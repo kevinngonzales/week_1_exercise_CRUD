@@ -14,6 +14,5 @@ app.get('/', function (req, res) {
 // always keep at bottom
 app.listen(PORT, function () {
     console.log(`Server is live! Listening at port ${PORT}`);
-    // if this does not work, remember to save your file afte
 })
 
