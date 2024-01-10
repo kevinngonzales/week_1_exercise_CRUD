@@ -17,7 +17,6 @@ app.get('/', function (req, res) {
 
 app.post('/users', (req, res) => {
 	console.log(req.body);
-	// if this does not work, remember to save your file after each major change
 })
 
 // always keep at bottom
