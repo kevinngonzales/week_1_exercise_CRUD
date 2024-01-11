@@ -10,7 +10,7 @@ A simple Create, Read, Update, and Delete project.
 **Frameworks:** Express  
 
 ## Getting started
-Currently the app can simply read data.
+This app can read data, create files, and store data using MongoDB.
 
 ## Installation
 
