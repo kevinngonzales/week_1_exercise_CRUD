@@ -7,17 +7,44 @@ const MongoClient = require('mongodb').MongoClient;
 const app = express();
 const PORT = 3000;
 
+require('dotenv').config({ path: '.env' });
+
+
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
+
+
 //should always be above CRUD code
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
-})
 
-app.post('/users', (req, res) => {
-	console.log(req.body);
-})
+MongoClient.connect(process.env.MONGO_URI)
+    .then(client => {
+        const db = client.db('practice');
+        const usersCollection = db.collection('users');
+
+        app.get('/', (req, res) => {
+            usersCollection
+                .find()
+                .toArray()
+                .then(results => {
+                    res.render('index.ejs', { usersCollection: results })
+                })
+                .catch(error => console.error(error))
+        })
+
+
+        app.post('/users', (req, res) => {
+            usersCollection
+                .insertOne(req.body)
+                .then(results => {
+                    res.redirect('/');
+                })
+        })
+    })
+    .catch(error => console.log(error));
+
 
 // always keep at bottom
 app.listen(PORT, function () {
