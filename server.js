@@ -1,16 +1,17 @@
 console.log('Is this thing on?');
 
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const app = express();
 const PORT = 3000;
 
+
 require('dotenv').config({ path: '.env' });
 
 
 app.set('view engine', 'ejs');
+
 app.use(express.static('public'));
 
 
@@ -34,6 +35,45 @@ MongoClient.connect(process.env.MONGO_URI)
                 .catch(error => console.error(error))
         })
 
+        app.put('/users', (req, res) => {
+            usersCollection
+                .findOneAndUpdate(
+                    { username: req.body.username },
+                    {
+                        $set: {
+                            username: req.body.username,
+                            password: req.body.password,
+                        },
+                    },
+                    {
+                        upsert: false,
+                    },
+                    {
+                        returnNewDocument: true
+                    }
+                )
+                .then(result => {
+                    res.json('Success')
+                    return res
+                })
+                .then(res => {
+                    window.location.reload(true)
+                })
+                .catch(error => console.error(error))
+        })
+
+        app.delete('/users', (req, res) => {
+            usersCollection
+                .deleteOne(
+                    { username: req.body.username }
+                )
+                .then(result => {
+                    console.log(`Deleted ${req.body.username}`)
+                    console.log(result);
+                    res.json('Deleted user')
+                })
+                .catch(error => console.error(error))
+        })
 
         app.post('/users', (req, res) => {
             usersCollection

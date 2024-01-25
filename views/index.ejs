@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -13,6 +14,10 @@
       <button type="submit">Submit</button>
     </form>
 
+    <button id="update-button">Update</button>
+
+    <button id="delete-button">Delete User</button> 
+
     <ul class="users">
       <% for(var i=0; i < usersCollection.length; i++) {%>
       <li class="user">
@@ -24,7 +29,7 @@
       <% } %>
     </ul>
 
-
+      <script src="/public/main.js"></script>
 
   </body>
 </html>
