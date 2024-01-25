@@ -12,12 +12,13 @@ require('dotenv').config({ path: '.env' });
 
 app.set('view engine', 'ejs');
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.use(express.static('public'));
 
 
 //should always be above CRUD code
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 
 MongoClient.connect(process.env.MONGO_URI)
@@ -55,9 +56,6 @@ MongoClient.connect(process.env.MONGO_URI)
                 .then(result => {
                     res.json('Success')
                     return res
-                })
-                .then(res => {
-                    window.location.reload(true)
                 })
                 .catch(error => console.error(error))
         })

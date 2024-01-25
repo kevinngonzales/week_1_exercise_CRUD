@@ -38,10 +38,16 @@ deleteButton.addEventListener('click', () => {
             username: username
         }),
     })
+    
     .then(res => {
         console.log('deleted')
         if (res.ok) return res.json();
     })
+
+    .then(res =>{
+        window.location.reload(true)
+    })
+
 })
 
 
