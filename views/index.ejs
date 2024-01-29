@@ -1,35 +1,74 @@
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
+
+    <style> 
+    
+    .post {
+        margin-bottom: 25px;
+        padding-bottom: 25px;
+    }
+    
+    </style>
+
     <meta charset="UTF-8" />
-    <title>MY APP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
   </head>
   <body>
-    <h1>This is my CRUD app test</h1>
-
+    <h1>Enter user</h1>
     <form action="/users" method="POST">
       <input type="text" id="username" placeholder="Username" name="username" />
-      <input type="text" id="password" placeholder="Password" name="password" />
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        name="password"
+      />
       <button type="submit">Submit</button>
     </form>
-
-    <button id="update-button">Update</button>
-
-    <button id="delete-button">Delete User</button> 
+    <button id="update-button">Update Password</button>
+    <button id="delete-button">Delete User</button>
 
     <ul class="users">
-      <% for(var i=0; i < usersCollection.length; i++) {%>
+      <% for(var i=0; i < body.users.length; i++) {%>
       <li class="user">
-    
-        <span> <%= usersCollection[i].username %> </span>:
 
-        <span> <%= usersCollection[i].password %> </span>
+        <span> <%= body.users[i].username %> </span>:
+
+        <span> <%= body.users[i].password %> </span>
       </li>
       <% } %>
     </ul>
 
-      <script src="/main.js"></script>
+    <h1>Enter post</h1>
 
+    <form action="/posts" method="POST">
+      <input type="text" id="title" placeholder="Title" name="title" />
+      <input type="text" id="body" placeholder="Body" name="body" />
+      <button type="submit">Post</button>
+    </form>
+
+    <div>
+      <ul class="posts">
+        <% for(var i=0; i < body.posts.length; i++) {%>
+        <li class="post">
+          <strong> <span> User: <%= body.users[i].username %> </span> </strong>
+
+          <h3>Title</h3>
+
+          <span> <%= body.posts[i].title %> </span>
+
+          <h3>Body</h3>
+
+          <span> <%= body.posts[i].body %> </span>
+        </li>
+
+        <% } %>
+      </ul>
+
+
+    </div>
+    <script src="/main.js"></script>
   </body>
 </html>

@@ -3,7 +3,6 @@ const update = document.getElementById('update-button');
 const deleteButton = document.getElementById('delete-button');
 
 
-
 update.addEventListener('click', _ => {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -38,7 +37,7 @@ deleteButton.addEventListener('click', () => {
             username: username
         }),
     })
-    
+
     .then(res => {
         console.log('deleted')
         if (res.ok) return res.json();

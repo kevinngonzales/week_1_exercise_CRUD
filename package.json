@@ -11,6 +11,7 @@
   "author": "Kevinn Gonzales",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.8.1",
     "body-parser": "^1.20.2",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
@@ -18,6 +19,7 @@
     "mongodb": "^6.3.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2"
+    "nodemon": "^3.0.2",
+    "prisma": "^5.8.1"
   }
 }
