@@ -14,7 +14,7 @@ This app can read data, create files, and store data using MongoDB.
 
 ## Installation
 
-1. Clone repository "git clone https://github.com/kevinngonzales/project_web_app_random_api.git"
+1. Clone repository "https://github.com/kevinngonzales/week_1_exercise_CRUD.git"
 
 2. Open with VS Code
 
